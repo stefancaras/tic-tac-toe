@@ -7,7 +7,6 @@ let isX;
 $(".container").addEventListener("click", (e) => {
   let id = e.target.dataset.id;
   if (["x", "o"].includes(id)) {
-    board = [...Array(9)].fill("");
     isX = id === "x" ? true : false;
     if (!isX) board[0] = "X";
     $(".modal").style.display = "none";
