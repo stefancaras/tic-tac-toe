@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=REM:wght@500&display=swap");
+
+* {
+  margin: 0;
+}
+body {
+  background: linear-gradient(-45deg, #23a6d5, #23d5ab);
+}
+h1 {
+  margin: 30px 0;
+}
+button {
+  font-family: "REM", sans-serif;
+  width: 200px;
+  height: 200px;
+  background-color: #fdb44b;
+  font-size: 150px;
+  border: 1px solid black;
+}
+button:hover {
+  background-color: #ff9500;
+}
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+.xo {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  width: 600px;
+  height: 600px;
+  margin: 20px auto;
+}
+.X {
+  color: #00308f;
+}
+.O {
+  color: #aa0000;
+}
+.modal {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #00000085;
+}
+.choose {
+  background: linear-gradient(-45deg, #23a6d5, #23d5ab);
+  border-radius: 20px;
+  text-align: center;
+  padding: 20px;
+}
+.play {
+  font-size: 40px;
+}
