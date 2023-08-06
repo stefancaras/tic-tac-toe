@@ -15,15 +15,8 @@ button {
   width: 20vh;
   height: 20vh;
   font-size: 15vh;
-  border: 1px solid black;
-}
-button:hover {
-  background-color: #ffa72c;
-}
-button,
-button:focus,
-button:active {
   background-color: #ff9500;
+  border: 1px solid black;
 }
 .container {
   position: relative;
@@ -60,6 +53,12 @@ button:active {
 }
 .O {
   color: #aa0000;
+}
+
+@media (hover: hover) {
+  button:hover {
+    background-color: #ffa72c;
+  }
 }
 
 @media screen and (orientation: portrait) {
