@@ -4,26 +4,6 @@ let board = [...Array(9)].fill("");
 const check = ["012", "345", "678", "036", "147", "258", "048", "246"];
 let isX;
 
-$(".container").addEventListener("click", (e) => {
-  let id = e.target.dataset.id;
-  if (["x", "o"].includes(id)) {
-    isX = id === "x" ? true : false;
-    if (!isX) board[0] = "X";
-    $(".modal").style.display = "none";
-  } else if (board[id] === "") {
-    board[id] = isX ? "X" : "O";
-    if (!isGameOver(board)) makeBestMove(!isX);
-    let gameOver = isGameOver(board);
-    if (gameOver) {
-      let gameStatus = gameOver == "tie" ? "It's a tie!" : "The computer won!";
-      $(".choose").innerHTML = `<h1>${gameStatus}</h1>
-          <button class='play' onclick='playAgain()'>Play again</button>`;
-      $(".modal").style.display = "flex";
-    }
-  }
-  drawBoard();
-});
-
 const drawBoard = () => {
   for (let i = 0; i < 9; i++) {
     $(`[data-id='${i}']`).textContent = board[i];
@@ -74,3 +54,23 @@ const minimax = (xTurn, position, alpha, beta) => {
 };
 
 const playAgain = () => location.reload();
+
+$(".container").addEventListener("click", (e) => {
+  let id = e.target.dataset.id;
+  if (["x", "o"].includes(id)) {
+    isX = id === "x" ? true : false;
+    if (!isX) board[0] = "X";
+    $(".modal").style.display = "none";
+  } else if (board[id] === "") {
+    board[id] = isX ? "X" : "O";
+    if (!isGameOver(board)) makeBestMove(!isX);
+    let gameOver = isGameOver(board);
+    if (gameOver) {
+      let gameStatus = gameOver === "tie" ? "It's a tie!" : "The computer won!";
+      $(".choose").innerHTML = `<h1>${gameStatus}</h1>
+          <button class='play' onclick='playAgain()'>Play again</button>`;
+      $(".modal").style.display = "flex";
+    }
+  }
+  drawBoard();
+});

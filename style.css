@@ -11,14 +11,14 @@ h1 {
 }
 button {
   font-family: "REM", sans-serif;
-  width: 200px;
-  height: 200px;
-  background-color: #fdb44b;
-  font-size: 150px;
+  width: 20vh;
+  height: 20vh;
+  background-color: #ff9500;
+  font-size: 15vh;
   border: 1px solid black;
 }
 button:hover {
-  background-color: #ff9500;
+  background-color: #ffa72c;
 }
 .container {
   position: relative;
@@ -32,9 +32,8 @@ button:hover {
   position: absolute;
   display: flex;
   flex-wrap: wrap;
-  width: 600px;
-  height: 600px;
-  margin: 20px auto;
+  width: 60vh;
+  height: 60vh;
 }
 .X {
   color: #00308f;
@@ -58,5 +57,17 @@ button:hover {
   padding: 20px;
 }
 .play {
-  font-size: 40px;
+  font-size: 32px;
+}
+
+@media screen and (orientation: portrait) {
+  .xo {
+    width: 90vw;
+    height: 90vw;
+  }
+  button {
+    width: 30vw;
+    height: 30vw;
+    font-size: 25vw;
+  }
 }
