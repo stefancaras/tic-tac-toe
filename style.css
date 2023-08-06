@@ -20,6 +20,9 @@ button {
 button:hover {
   background-color: #ffa72c;
 }
+button:active {
+  background-color: #ff9500;
+}
 .container {
   position: relative;
   display: flex;
