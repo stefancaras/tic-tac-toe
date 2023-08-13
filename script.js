@@ -1,7 +1,7 @@
 const $ = (query) => document.querySelector(query);
 
-let board = [...Array(9)].fill("");
-const check = ["012", "345", "678", "036", "147", "258", "048", "246"];
+const board = [...Array(9)].fill("");
+const playAgain = () => location.reload();
 let isX;
 
 const drawBoard = () => {
@@ -11,10 +11,9 @@ const drawBoard = () => {
   }
 };
 
-const isGameOver = (board) => {
-  for (let code of check) {
-    [a, b, c] = [...code];
-    let winner = board[+a] + board[+b] + board[+c];
+const isGameOver = () => {
+  for (let code of ["012", "345", "678", "036", "147", "258", "048", "246"]) {
+    let winner = board[+code[0]] + board[+code[1]] + board[+code[2]];
     if (["XXX", "OOO"].includes(winner)) return winner[0];
   }
   if (!board.includes("")) return "tie";
@@ -26,7 +25,7 @@ const makeBestMove = (forX) => {
   for (let i = 0; i < 9; i++) {
     if (board[i] === "") {
       board[i] = forX ? "X" : "O";
-      if (isGameOver(board)) return;
+      if (isGameOver()) return;
       scores.push(minimax(!forX, board, -2, 2));
       board[i] = "";
     } else scores.push(forX ? -2 : 2);
@@ -35,16 +34,16 @@ const makeBestMove = (forX) => {
   board[bestMove] = forX ? "X" : "O";
 };
 
-const minimax = (xTurn, position, alpha, beta) => {
-  let gameOver = isGameOver(position);
+const minimax = (xTurn, alpha, beta) => {
+  let gameOver = isGameOver();
   if (gameOver) return gameOver === "tie" ? 0 : gameOver === "X" ? 1 : -1;
 
   let scores = [];
   for (let i = 0; i < 9; i++) {
-    if (position[i] === "") {
-      position[i] = xTurn ? "X" : "O";
-      scores.push(minimax(!xTurn, position, alpha, beta));
-      position[i] = "";
+    if (board[i] === "") {
+      board[i] = xTurn ? "X" : "O";
+      scores.push(minimax(!xTurn, alpha, beta));
+      board[i] = "";
       // alpha-beta pruning (increases speed)
       if (xTurn) alpha = Math.max(alpha, scores.at(-1));
       else beta = Math.min(beta, scores.at(-1));
@@ -54,18 +53,17 @@ const minimax = (xTurn, position, alpha, beta) => {
   return xTurn ? Math.max(...scores) : Math.min(...scores);
 };
 
-const playAgain = () => location.reload();
-
 $(".container").addEventListener("click", (e) => {
   let id = e.target.dataset.id;
   if (["x", "o"].includes(id)) {
     isX = id === "x" ? true : false;
-    if (!isX) board[0] = "X";
+    randomNumber = Math.floor(Math.random() * 9);
+    if (!isX) board[randomNumber] = "X";
     $(".modal").style.display = "none";
   } else if (board[id] === "") {
     board[id] = isX ? "X" : "O";
-    if (!isGameOver(board)) makeBestMove(!isX);
-    let gameOver = isGameOver(board);
+    if (!isGameOver()) makeBestMove(!isX);
+    let gameOver = isGameOver();
     if (gameOver) {
       let gameStatus = gameOver === "tie" ? "It's a tie!" : "The computer won!";
       $(".choose").innerHTML = `<h1>${gameStatus}</h1>
