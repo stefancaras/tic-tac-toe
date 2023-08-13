@@ -26,7 +26,7 @@ const makeBestMove = (forX) => {
     if (board[i] === "") {
       board[i] = forX ? "X" : "O";
       if (isGameOver()) return;
-      scores.push(minimax(!forX, board, -2, 2));
+      scores.push(minimax(!forX, -2, 2));
       board[i] = "";
     } else scores.push(forX ? -2 : 2);
   }
