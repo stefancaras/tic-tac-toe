@@ -39,6 +39,7 @@ button {
   flex-wrap: wrap;
   width: 60vh;
   height: 60vh;
+  box-shadow: 0 0 30px 10px black;
 }
 .choose {
   border-radius: 20px;
